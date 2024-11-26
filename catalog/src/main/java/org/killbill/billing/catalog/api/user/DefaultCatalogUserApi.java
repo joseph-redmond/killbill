@@ -19,6 +19,7 @@
 
 package org.killbill.billing.catalog.api.user;
 
+import io.github.pixee.security.ObjectInputFilters;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -217,6 +218,7 @@ public class DefaultCatalogUserApi implements CatalogUserApi {
             out.writeObject(versionedCatalog);
             final ByteArrayInputStream bis = new ByteArrayInputStream(bos.toByteArray());
             final ObjectInputStream in = new ObjectInputStream(bis);
+            ObjectInputFilters.enableObjectFilterIfUnprotected(in);
             versionedCatalog = (VersionedCatalog) in.readObject();
 
             if (versionedCatalog == null) {

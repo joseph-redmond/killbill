@@ -65,6 +65,7 @@
         <main.basedir>${project.basedir}</main.basedir>
         <!-- Temporary until upgrade to 2.x -->
         <swagger.version>1.6.2</swagger.version>
+        <versions.java-security-toolkit>1.2.0</versions.java-security-toolkit>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -100,6 +101,12 @@
                         <artifactId>guice</artifactId>
                     </exclusion>
                 </exclusions>
+            </dependency>
+            <dependency>
+                <groupId>io.github.pixee</groupId>
+                <artifactId>java-security-toolkit</artifactId>
+                
+                <version>${versions.java-security-toolkit}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
