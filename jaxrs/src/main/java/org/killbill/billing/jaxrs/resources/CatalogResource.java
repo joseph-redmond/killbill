@@ -19,6 +19,7 @@
 
 package org.killbill.billing.jaxrs.resources;
 
+import io.github.pixee.security.ObjectInputFilters;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -163,6 +164,7 @@ public class CatalogResource extends JaxRsResourceBase {
             out.writeObject(versionedcatalog);
             final ByteArrayInputStream bis = new ByteArrayInputStream(bos.toByteArray());
             final ObjectInputStream in = new ObjectInputStream(bis);
+            ObjectInputFilters.enableObjectFilterIfUnprotected(in);
             catalog = (VersionedCatalog) in.readObject();
             catalog.getVersions().clear();
             catalog.getVersions().add(versionedcatalog.getVersion(catalogDateVersion.toDate()));
